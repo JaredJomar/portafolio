@@ -1,8 +1,16 @@
+<<<<<<< HEAD
 "use client"
 
 import { useState } from "react"
 import ProjectCard from "./ProjectCard"
 import { projects } from "../data/projects"
+=======
+'use client'
+
+import { useState } from 'react'
+import ProjectCard from './ProjectCard'
+import { projects } from '../data/projects'
+>>>>>>> 45a74c90d1e713c89eb94aa3f5ac23f84e3b5061
 
 export default function ProjectGrid() {
   const [visibleProjects, setVisibleProjects] = useState(6)

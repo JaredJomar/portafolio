@@ -37,6 +37,7 @@ export const projects: Project[] = [
     link: "https://github.com/JaredJomar/Projects/tree/main/TampermonkeyProjects/AnimeFLV"
   },
   {
+<<<<<<< HEAD
     title: "Apple TV Enhancements",
     icon: "fa-apple",
     description: "A Tampermonkey script that adds new features and improves the user interface of the Apple TV web application.",
@@ -44,6 +45,8 @@ export const projects: Project[] = [
     link: "https://github.com/JaredJomar/Projects/tree/main/TampermonkeyProjects/AppleTV"
   },
   {
+=======
+>>>>>>> 45a74c90d1e713c89eb94aa3f5ac23f84e3b5061
     title: "Disney Plus Enhancements",
     icon: "fa-film",
     description: "Enhances Disney Plus with features like automatic intro/recap skipping, next episode autoplay, and fullscreen mode automation, all customizable via a settings dialog.",

@@ -1,12 +1,22 @@
+<<<<<<< HEAD
 module.exports = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
+=======
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+>>>>>>> 45a74c90d1e713c89eb94aa3f5ac23f84e3b5061
   ],
   theme: {
     extend: {
       colors: {
+<<<<<<< HEAD
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -45,6 +55,14 @@ module.exports = {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+=======
+        'primary-color': 'var(--primary-color)',
+        'secondary-color': 'var(--secondary-color)',
+        'background': 'var(--background-color)',
+        'card-background': 'var(--card-background)',
+        'text-color': 'var(--text-color)',
+        'text-secondary': 'var(--text-secondary)',
+>>>>>>> 45a74c90d1e713c89eb94aa3f5ac23f84e3b5061
       },
     },
   },
