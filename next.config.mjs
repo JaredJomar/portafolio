@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-/** @type {import('next').NextConfig} */
-const nextConfig = {};
-
-export default nextConfig;
-=======
->>>>>>> c3fa5384aa439b15da03084628fd866ccae3b6f9
 let userConfig = undefined
 try {
   userConfig = await import('./v0-user-next.config')
@@ -55,7 +46,3 @@ function mergeConfig(nextConfig, userConfig) {
 }
 
 export default nextConfig
-<<<<<<< HEAD
-=======
->>>>>>> 45a74c90d1e713c89eb94aa3f5ac23f84e3b5061
->>>>>>> c3fa5384aa439b15da03084628fd866ccae3b6f9

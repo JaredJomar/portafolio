@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> c3fa5384aa439b15da03084628fd866ccae3b6f9
 # dependencies
 /node_modules
 /.pnp
@@ -9,15 +5,6 @@
 
 # testing
 /coverage
-<<<<<<< HEAD
-=======
-=======
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
-# dependencies
-/node_modules
->>>>>>> 45a74c90d1e713c89eb94aa3f5ac23f84e3b5061
->>>>>>> c3fa5384aa439b15da03084628fd866ccae3b6f9
 
 # next.js
 /.next/
@@ -26,53 +13,22 @@
 # production
 /build
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> c3fa5384aa439b15da03084628fd866ccae3b6f9
 # misc
 .DS_Store
 *.pem
 
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 45a74c90d1e713c89eb94aa3f5ac23f84e3b5061
->>>>>>> c3fa5384aa439b15da03084628fd866ccae3b6f9
 # debug
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-<<<<<<< HEAD
 
 # local env files
 .env*.local
-=======
-<<<<<<< HEAD
-
-# local env files
-.env*.local
-=======
-.pnpm-debug.log*
-
-# env files
-.env*
->>>>>>> 45a74c90d1e713c89eb94aa3f5ac23f84e3b5061
->>>>>>> c3fa5384aa439b15da03084628fd866ccae3b6f9
 
 # vercel
 .vercel
 
 # typescript
 *.tsbuildinfo
-<<<<<<< HEAD
 next-env.d.ts
 
-=======
-<<<<<<< HEAD
-next-env.d.ts
-
-=======
-next-env.d.ts
->>>>>>> 45a74c90d1e713c89eb94aa3f5ac23f84e3b5061
->>>>>>> c3fa5384aa439b15da03084628fd866ccae3b6f9
