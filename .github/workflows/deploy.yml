@@ -3,6 +3,10 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [ main ]
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> c3fa5384aa439b15da03084628fd866ccae3b6f9
   workflow_dispatch:
 
 permissions:
@@ -50,4 +54,41 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+<<<<<<< HEAD
+=======
+=======
+
+# Add permissions block
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build:static
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: out
+          branch: gh-pages
+          token: ${{ secrets.GITHUB_TOKEN }}
+>>>>>>> 45a74c90d1e713c89eb94aa3f5ac23f84e3b5061
+>>>>>>> c3fa5384aa439b15da03084628fd866ccae3b6f9
 
