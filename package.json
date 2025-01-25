@@ -55,7 +55,8 @@
     "vaul": "^0.9.0",
     "react-hook-form": "^7.50.0",
     "input-otp": "^1.0.0",
-    "react-resizable-panels": "^2.0.12"
+    "react-resizable-panels": "^2.0.12",
+    "sonner": "^1.0.0"
   },
   "devDependencies": {
     "@types/node": "^22.10.10",
