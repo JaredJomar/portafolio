@@ -2,6 +2,78 @@ import type { Project } from "../types/project"
 
 export const projects: Project[] = [
   {
+    title: "VIC - Virtual Institutional Counselor",
+    icon: "fa-robot",
+    description:
+      "An AI-powered institutional counseling system that provides academic guidance to university students. Built with Python, Streamlit for the frontend and PostgreSQL for the database.",
+    technologies: ["Python", "Streamlit", "PostgreSQL", "NLP", "ETL"],
+    link: "https://github.com/JaredJomar/VIC-Virtual-Institutional-Counselor",
+  },
+  {
+    title: "Cracking the Crime Code",
+    icon: "fa-shield-alt",
+    description:
+      "A Java application for deciphering hidden messages used by criminal organizations, extracting key information, and planning arrest operations to maximize criminal arrests.",
+    technologies: ["Java", "Data Structures", "Algorithms", "Recursion"],
+    link: "https://github.com/JaredJomar/Cracking-the-Crime-Code",
+  },
+  {
+    title: "Huffman Coding",
+    icon: "fa-compress",
+    description:
+      "An implementation of the Huffman coding algorithm for data compression, optimizing encoding by assigning shorter codes to more frequently occurring symbols.",
+    technologies: ["Java", "Data Structures", "Algorithms", "Binary Trees"],
+    link: "https://github.com/JaredJomar/Huffman-Coding",
+  },
+  {
+    title: "Pacman Deluxe",
+    icon: "fa-ghost",
+    description:
+      "An enhanced version of Pacman with advanced features including power-up collections, sorting algorithms, pathfinding for ghost eyes, and a GPS system for locating power-ups.",
+    technologies: ["C++", "Game Development", "Algorithms", "OOP"],
+    link: "https://github.com/JaredJomar/Pacman-Deluxe",
+  },
+  {
+    title: "Pacman",
+    icon: "fa-dot-circle",
+    description:
+      "A Pacman game implementation with various power-ups, multiple game states, and customizable features including character selection and random ghost spawning.",
+    technologies: ["C++", "Game Development", "OOP", "State Pattern"],
+    link: "https://github.com/JaredJomar/Pacman",
+  },
+  {
+    title: "Audio Visualizer Simulator",
+    icon: "fa-music",
+    description:
+      "An audio visualization application with multiple visualization modes, volume control, song selection, and a record/replay feature for user interactions.",
+    technologies: ["C++", "Audio Processing", "Graphics", "UI Development"],
+    link: "https://github.com/JaredJomar/Audio-Visualizer-Simulator-",
+  },
+  {
+    title: "Fractals Project",
+    icon: "fa-snowflake",
+    description:
+      "An interactive fractal visualization application with customizable recursion levels, multiple fractal types, and animations. Features an abstract class hierarchy and polymorphic implementations.",
+    technologies: ["C++", "Recursion", "Graphics", "OOP"],
+    link: "https://github.com/JaredJomar/Fractals-Project-",
+  },
+  {
+    title: "Spooky Quest",
+    icon: "fa-gamepad",
+    description:
+      "A text-based adventure game featuring multiple areas, enemy battles using Rock-Paper-Scissors mechanics, boss fights with multiple phases, and NPC interactions.",
+    technologies: ["C++", "Game Development", "OOP", "State Pattern"],
+    link: "https://github.com/JaredJomar/Spooky-Quest",
+  },
+  {
+    title: "Particles System Simulator",
+    icon: "fa-atom",
+    description:
+      "A particle system simulator with features like color toggling, velocity control, particle magnification, and record/replay functionality for user interactions.",
+    technologies: ["C++", "Physics Simulation", "Graphics", "User Interaction"],
+    link: "https://github.com/JaredJomar/Particles-System-Simulator",
+  },
+  {
     title: "Archive.org-Downloader",
     icon: "fa-book",
     description:
@@ -21,8 +93,8 @@ export const projects: Project[] = [
     title: "PDF Tool",
     icon: "fa-file-pdf",
     description:
-      "A versatile PDF utility built with Python and Tkinter, offering functionalities to combine PDFs, split PDFs into individual pages, and extract specific pages.",
-    technologies: ["Python", "Tkinter", "PyPDF2"],
+      "A powerful PDF utility with a modern dark-themed interface offering comprehensive features: combine PDFs, split into pages, extract specific ranges, rotate pages, compress files, and convert to various formats.",
+    technologies: ["Python", "PyQt6", "PyPDF2", "PyMuPDF", "pdf2docx"],
     link: "https://github.com/JaredJomar/Projects/tree/main/Pdf_Combiner",
   },
   {
