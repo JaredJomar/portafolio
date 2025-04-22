@@ -13,7 +13,7 @@ import Footer from "../components/Footer"
 export default function Home() {
   const { resolvedTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
-  
+
   // This effect ensures hydration is complete before rendering theme-dependent components
   useEffect(() => {
     setMounted(true)
