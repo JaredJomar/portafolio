@@ -2,6 +2,14 @@ import type { Project } from "../types/project"
 
 export const projects: Project[] = [
   {
+    title: "WalletAlert",
+    icon: "fa-wallet",
+    description:
+      "A smart budgeting companion designed for students. Set weekly and monthly budgets, log expenses, visualize spending trends with charts, and receive alerts before overspending. Features Auth0 authentication and optimistic UI updates.",
+    technologies: ["React", "Node.js", "MongoDB", "Express", "Vite", "Auth0"],
+    link: "https://github.com/uprm-torre/software-engineering-project-walletalert",
+  },
+  {
     title: "VIC - Virtual Institutional Counselor",
     icon: "fa-robot",
     description:
