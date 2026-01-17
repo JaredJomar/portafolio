@@ -63,6 +63,8 @@ export default function Footer() {
               width={150}
               height={28}
               className="rounded"
+              loading="lazy"
+              sizes="150px"
             />
             <Image
               src="https://wakatime.com/badge/user/628ab87c-405a-4a29-8c87-079bc17f01c2.svg"
@@ -70,6 +72,8 @@ export default function Footer() {
               width={190}
               height={28}
               className="rounded"
+              loading="lazy"
+              sizes="190px"
             />
           </div>
 

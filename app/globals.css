@@ -4,7 +4,7 @@
 
 @layer base {
   :root {
-    /* Light mode colors - matching the screenshot */
+    /* Light mode colors - enhanced professional palette */
     --background: 0 0% 100%;
     --foreground: 222 47% 11%;
 
@@ -14,57 +14,57 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222 47% 11%;
 
-    --primary: 221 83% 53%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 221 83% 50%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96%;
+    --secondary: 220 14% 96%;
     --secondary-foreground: 222 47% 11%;
 
-    --muted: 210 40% 96%;
+    --muted: 220 14% 96%;
     --muted-foreground: 215 16% 47%;
 
-    --accent: 210 40% 96%;
+    --accent: 220 14% 96%;
     --accent-foreground: 222 47% 11%;
 
     --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 221 83% 53%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 221 83% 50%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
   }
 
   .dark {
-    /* Dark mode colors - using the deep blue color scheme from the screenshot */
-    --background: 222 47% 11%;
+    /* Dark mode colors - enhanced contrast and elegance */
+    --background: 222 47% 8%;
     --foreground: 210 40% 98%;
 
-    --card: 220 45% 12%;
+    --card: 220 45% 10%;
     --card-foreground: 210 40% 98%;
 
-    --popover: 220 45% 12%;
+    --popover: 220 45% 10%;
     --popover-foreground: 210 40% 98%;
 
     --primary: 217 91% 60%;
-    --primary-foreground: 222 47% 11%;
+    --primary-foreground: 222 47% 8%;
 
-    --secondary: 217 33% 18%;
+    --secondary: 217 33% 16%;
     --secondary-foreground: 210 40% 98%;
 
-    --muted: 217 33% 18%;
-    --muted-foreground: 215 20% 65%;
+    --muted: 217 33% 16%;
+    --muted-foreground: 215 20% 75%;
 
-    --accent: 217 33% 18%;
+    --accent: 217 33% 16%;
     --accent-foreground: 210 40% 98%;
 
     --destructive: 0 63% 31%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 217 33% 18%;
-    --input: 217 33% 18%;
-    --ring: 212.7 26.8% 83.9%;
+    --border: 217 33% 22%;
+    --input: 217 33% 22%;
+    --ring: 217 91% 60%;
   }
 }
 
@@ -74,7 +74,29 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
+  }
+
+  /* Improved typography scale */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply tracking-tight font-semibold;
+  }
+
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl;
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl;
+  }
+
+  h3 {
+    @apply text-2xl md:text-3xl;
   }
 }
 
@@ -88,7 +110,7 @@
   }
 
   50% {
-    transform: translateY(-10px);
+    transform: translateY(-6px);
   }
 
   100% {
@@ -96,8 +118,26 @@
   }
 }
 
+.animate-glow {
+  animation: glow 4s ease-in-out infinite;
+}
+
+@keyframes glow {
+
+  0%,
+  100% {
+    opacity: 0.8;
+    filter: brightness(1);
+  }
+
+  50% {
+    opacity: 1;
+    filter: brightness(1.2);
+  }
+}
+
 .glass-effect {
-  @apply bg-background/10 backdrop-blur-md border border-border/40 rounded-xl;
+  @apply bg-background/70 backdrop-blur-xl border border-border/30 rounded-xl shadow-sm;
 }
 
 .bg-gradient-text {
@@ -105,22 +145,27 @@
 }
 
 .bg-gradient-text-light {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-indigo-400;
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-500;
 }
 
 .bg-gradient-text-dark {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-blue-600;
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-blue-700;
 }
 
-/* Add new utility classes to match the screenshot style */
-.bg-card-gradient {
-  @apply bg-gradient-to-b from-slate-800/80 to-slate-900;
+/* Improved Card Styles */
+.card-elevated {
+  @apply bg-card border border-border shadow-md hover:shadow-xl transition-all duration-300 rounded-xl;
 }
 
-.btn-gradient {
-  @apply bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700;
+.card-interactive {
+  @apply card-elevated hover:border-primary/40 hover:-translate-y-1 hover:shadow-2xl;
 }
 
-.tab-gradient-active {
-  @apply bg-gradient-to-r from-blue-500 to-blue-600;
+/* Professional button styles */
+.btn-primary {
+  @apply inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground font-medium rounded-lg px-6 py-3 hover:bg-primary/90 transition-all duration-200 shadow-sm hover:shadow-md;
+}
+
+.btn-secondary {
+  @apply bg-secondary text-secondary-foreground font-medium rounded-lg px-6 py-3 border border-border hover:bg-accent hover:text-accent-foreground transition-all duration-200;
 }
