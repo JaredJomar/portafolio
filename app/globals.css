@@ -141,15 +141,29 @@
 }
 
 .bg-gradient-text {
-  @apply bg-clip-text text-transparent;
+  @apply text-foreground;
 }
 
 .bg-gradient-text-light {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-500;
+  @apply text-foreground;
 }
 
 .bg-gradient-text-dark {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-blue-700;
+  @apply text-foreground;
+}
+
+@supports (-webkit-background-clip: text) or (background-clip: text) {
+  .bg-gradient-text {
+    @apply bg-clip-text text-transparent;
+  }
+
+  .bg-gradient-text-light {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-500;
+  }
+
+  .bg-gradient-text-dark {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-blue-700;
+  }
 }
 
 /* Improved Card Styles */

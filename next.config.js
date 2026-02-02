@@ -30,7 +30,24 @@ const nextConfig = {
   basePath: process.env.NODE_ENV === "production" ? "/portafolio" : "",
   assetPrefix: process.env.NODE_ENV === "production" ? "/portafolio/" : "",
   trailingSlash: true,
+  async redirects() {
+    if (process.env.NODE_ENV === "production") {
+      return []
+    }
+
+    return [
+      {
+        source: "/portafolio",
+        destination: "/",
+        permanent: false,
+      },
+      {
+        source: "/portafolio/:path*",
+        destination: "/:path*",
+        permanent: false,
+      },
+    ]
+  },
 }
 
 module.exports = nextConfig
-
