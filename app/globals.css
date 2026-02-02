@@ -141,7 +141,7 @@
 }
 
 .bg-gradient-text {
-  @apply bg-clip-text text-transparent;
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-500 dark:from-blue-200 dark:via-blue-400 dark:to-indigo-500;
 }
 
 .bg-gradient-text-light {
@@ -149,7 +149,17 @@
 }
 
 .bg-gradient-text-dark {
-  @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-blue-700;
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-200 via-blue-400 to-indigo-500;
+}
+
+@supports not ((-webkit-background-clip: text) or (background-clip: text)) {
+  .bg-gradient-text,
+  .bg-gradient-text-light,
+  .bg-gradient-text-dark {
+    @apply text-foreground;
+    background: none;
+    -webkit-text-fill-color: currentColor;
+  }
 }
 
 /* Improved Card Styles */
