@@ -4,11 +4,15 @@ import Link from "next/link"
 import { Github, Linkedin, Menu, Moon, Sun } from "lucide-react"
 import { useState, useEffect } from "react"
 import { useTheme } from "next-themes"
+import { usePathname } from "next/navigation"
+import LanguageSwitcher from "@/components/LanguageSwitcher"
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const { theme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
+  const pathname = usePathname()
+  const isSpanish = pathname.startsWith("/es")
 
   // Only show theme toggle after component mounts to avoid hydration mismatch
   useEffect(() => {
@@ -19,9 +23,15 @@ export default function Header() {
     <header className="bg-card/95 backdrop-blur-xl border-b border-border shadow-sm sticky top-0 z-50 transition-all duration-300">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
         <div className="flex justify-between items-center">
-          <div className="text-2xl font-bold bg-gradient-text-light dark:bg-gradient-text-dark">Jared Cruz</div>
+          <Link
+            href={isSpanish ? "/es" : "/"}
+            className="text-2xl font-bold bg-gradient-text-light dark:bg-gradient-text-dark"
+          >
+            Jared Cruz
+          </Link>
           <div className="hidden md:flex space-x-6 items-center">
-            <NavItems />
+            <NavItems isSpanish={isSpanish} />
+            <LanguageSwitcher />
             {mounted && (
               <button
                 onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
@@ -39,7 +49,8 @@ export default function Header() {
       </nav>
       {isMenuOpen && (
         <div className="md:hidden px-4 py-4 space-y-4 flex flex-col bg-card/95 backdrop-blur-xl border-b border-border/50">
-          <NavItems />
+          <NavItems isSpanish={isSpanish} />
+          <LanguageSwitcher className="self-start" />
           {mounted && (
             <button
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
@@ -55,14 +66,17 @@ export default function Header() {
   )
 }
 
-function NavItems() {
+function NavItems({ isSpanish }: { isSpanish: boolean }) {
+  const projectsLabel = isSpanish ? "Proyectos" : "Projects"
+  const skillsLabel = isSpanish ? "Habilidades" : "Skills"
+
   return (
     <>
       <Link href="#projects" className="text-foreground hover:text-primary transition-colors font-medium px-2 py-1 rounded-lg hover:bg-accent/50">
-        Projects
+        {projectsLabel}
       </Link>
       <Link href="#skills" className="text-foreground hover:text-primary transition-colors font-medium px-2 py-1 rounded-lg hover:bg-accent/50">
-        Skills
+        {skillsLabel}
       </Link>
       <a
         href="https://github.com/JaredJomar"
@@ -83,4 +97,3 @@ function NavItems() {
     </>
   )
 }
-
