@@ -524,6 +524,13 @@ const projectSeeds: ProjectSeed[] = [
       "A powerful PDF utility with a modern dark-themed interface offering comprehensive features: combine PDFs, split into pages, extract specific ranges, rotate pages, compress files, and convert to various formats.",
     technologies: ["Python", "PyQt6", "PyPDF2", "PyMuPDF", "pdf2docx"],
     link: "https://github.com/JaredJomar/Projects/tree/main/Pdf_Combiner",
+    screenshots: [
+      {
+        src: "https://raw.githubusercontent.com/JaredJomar/Projects/main/apps/Pdf_Combiner/main.png",
+        alt: "PDF Tool main interface with merge, split, and rotate controls",
+        caption: "All-in-one PDF utility"
+      },
+    ],
     content: {
       en: {
         summary:
@@ -568,6 +575,89 @@ const projectSeeds: ProjectSeed[] = [
     },
   },
   {
+    slug: "transcriber",
+    featured: true,
+    title: "Transcriber",
+    icon: "fa-microphone",
+    description:
+      "Desktop app to transcribe audio from any URL supported by yt-dlp (including YouTube videos and playlists) with Whisper models from a PyQt6 interface.",
+    technologies: [
+      "Python",
+      "PyQt6",
+      "OpenAI Whisper",
+      "yt-dlp",
+      "FFmpeg",
+      "PyTorch",
+    ],
+    link: "https://github.com/JaredJomar/Transcriber",
+    screenshots: [
+      {
+        src: "https://raw.githubusercontent.com/JaredJomar/Transcriber/main/img/main.png",
+        alt: "Main window screenshot showing transcription controls and progress",
+        caption: "Main window",
+      },
+      {
+        src: "https://raw.githubusercontent.com/JaredJomar/Transcriber/main/img/settings.png",
+        alt: "Settings screenshot showing backend and theme configuration",
+        caption: "Settings",
+      },
+    ],
+    content: {
+      en: {
+        summary:
+          "PyQt6 desktop client that downloads audio from any URL supported by yt-dlp (including YouTube videos and playlists), picks the right Whisper backend, and exports Markdown transcripts with metadata.",
+        problem:
+          "Transcribing audio from any URL supported by yt-dlp (including YouTube videos and playlists) required memorizing yt-dlp/ffmpeg flags and juggling multiple tools for backend selection and output formatting.",
+        solution:
+          "Transcriber wraps yt-dlp, Whisper, and FFmpeg inside a focused PyQt6 workflow so you can pick a model, backend, and language, then get a clean transcript without terminal commands.",
+        features: [
+          "Download audio from single videos or entire playlists using yt-dlp",
+          "Select Whisper model (tiny/base/small/medium) with language or auto-detect",
+          "Choose CUDA, DirectML, or CPU backend and keep logs visible",
+          "Customize ffmpeg/yt-dlp paths, output folder, and theme (system/light/dark)",
+          "Export transcripts as Markdown files that include video metadata",
+        ],
+        stack: [
+          "Python",
+          "PyQt6",
+          "OpenAI Whisper",
+          "yt-dlp",
+          "FFmpeg",
+          "PyTorch",
+        ],
+        links: {
+          repo: "https://github.com/JaredJomar/Transcriber",
+        },
+      },
+      es: {
+        summary:
+          "Cliente de escritorio en PyQt6 que descarga audio de cualquier URL soportada por yt-dlp (incluyendo videos y playlists de YouTube), elige backend Whisper adecuado y guarda transcripciones Markdown con metadata.",
+        problem:
+          "Transcribir audio de cualquier URL soportada por yt-dlp (incluyendo videos y playlists de YouTube) exigía aprender flags de yt-dlp/ffmpeg y coordinar varias herramientas para escoger backend y formatear la salida.",
+        solution:
+          "Transcriber unifica yt-dlp, Whisper y FFmpeg en un flujo PyQt6 donde eliges modelo, backend e idioma y obtienes una transcripción limpia sin terminal.",
+        features: [
+          "Descarga audio de videos individuales o playlists completas con yt-dlp",
+          "Elige modelo Whisper (tiny/base/small/medium) con idioma fijo o detección automática",
+          "Selecciona backend CUDA, DirectML o CPU y mantén visibles los logs",
+          "Configura rutas de ffmpeg/yt-dlp, carpeta de salida y tema (sistema/claro/oscuro)",
+          "Exporta transcripciones en Markdown con metadata del video",
+        ],
+        stack: [
+          "Python",
+          "PyQt6",
+          "OpenAI Whisper",
+          "yt-dlp",
+          "FFmpeg",
+          "PyTorch",
+        ],
+        links: {
+          repo: "https://github.com/JaredJomar/Transcriber",
+        },
+      },
+    },
+  },
+  {
     slug: "video-download-app",
     featured: true,
     title: "Video Download App",
@@ -576,6 +666,18 @@ const projectSeeds: ProjectSeed[] = [
       "A PyQt5-based application for downloading videos and audio from YouTube, leveraging yt-dlp and FFmpeg for high-quality downloads and format conversions.",
     technologies: ["Python", "PyQt5", "yt-dlp", "FFmpeg"],
     link: "https://github.com/JaredJomar/Projects/tree/main/VideoDownload",
+    screenshots: [
+      {
+        src: "https://raw.githubusercontent.com/JaredJomar/Projects/main/apps/VideoDownload/img/main.png",
+        alt: "Video Download App main window showing format and quality selectors",
+        caption: "Download view"
+      },
+      {
+        src: "https://raw.githubusercontent.com/JaredJomar/Projects/main/apps/VideoDownload/img/settings.png",
+        alt: "Settings pane for the Video Download App with output and post-processing options",
+        caption: "Settings dialog"
+      },
+    ],
     content: {
       en: {
         summary:

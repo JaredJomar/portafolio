@@ -19,6 +19,12 @@ export interface ProjectContent {
   es: ProjectLocaleContent
 }
 
+export interface ProjectScreenshot {
+  src: string
+  alt: string
+  caption?: string
+}
+
 export interface Project {
   slug: string
   featured?: boolean
@@ -31,5 +37,6 @@ export interface Project {
   link: string
 
   // Bilingual case-study content.
+  screenshots?: ProjectScreenshot[]
   content: ProjectContent
 }

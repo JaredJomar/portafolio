@@ -65,6 +65,33 @@ export default function Page({
             </p>
           </section>
 
+          {project.screenshots?.length ? (
+            <section
+              data-testid="case-study-screenshots"
+              className="rounded-xl border border-border/60 bg-card/60 p-6"
+            >
+              <h2 className="text-lg font-semibold">Screenshots</h2>
+              <div className="mt-4 grid gap-4 grid-cols-1 md:grid-cols-2">
+                {project.screenshots.map(({ src, alt, caption }) => (
+                  <figure key={src} className="space-y-2">
+                    <img
+                      src={src}
+                      alt={alt}
+                      className="w-full rounded-lg border border-border/60 bg-muted"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    {caption ? (
+                      <figcaption className="text-sm text-muted-foreground">
+                        {caption}
+                      </figcaption>
+                    ) : null}
+                  </figure>
+                ))}
+              </div>
+            </section>
+          ) : null}
+
           <section className="rounded-xl border border-border/60 bg-card/60 p-6">
             <h2 className="text-lg font-semibold">Key features</h2>
             <ul className="mt-4 grid gap-2">
