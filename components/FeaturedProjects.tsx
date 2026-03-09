@@ -46,7 +46,7 @@ function FeaturedProjectCard({
       {screenshot ? (
         <div className="h-52 overflow-hidden border-b border-border/60 bg-muted/20">
           <img
-            src={screenshot.src}
+            src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}${screenshot.src}`}
             alt={screenshot.alt}
             className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
             loading="lazy"

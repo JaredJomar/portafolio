@@ -185,7 +185,7 @@ export default function HomePage({ locale }: { locale: Locale }) {
                     {previewProject.screenshots?.[0] ? (
                       <div className="overflow-hidden rounded-2xl border border-border/60 bg-muted/30">
                         <img
-                          src={previewProject.screenshots[0].src}
+                          src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}${previewProject.screenshots[0].src}`}
                           alt={previewProject.screenshots[0].alt}
                           className="h-60 w-full object-cover object-top"
                           loading="eager"

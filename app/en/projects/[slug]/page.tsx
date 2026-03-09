@@ -130,7 +130,7 @@ export default function Page({
                 {project.screenshots.map(({ src, alt, caption }) => (
                   <figure key={src} className="space-y-2">
                     <img
-                      src={src}
+                      src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}${src}`}
                       alt={alt}
                       className="w-full rounded-lg border border-border/60 bg-muted"
                       loading="lazy"
