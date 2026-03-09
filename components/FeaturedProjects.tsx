@@ -3,6 +3,7 @@ import { ArrowRight } from "lucide-react"
 
 import { projects } from "@/data/projects"
 import type { Project } from "@/types/project"
+import { getImageSrc } from "@/lib/utils"
 
 type Locale = "en" | "es"
 
@@ -46,7 +47,7 @@ function FeaturedProjectCard({
       {screenshot ? (
         <div className="h-52 overflow-hidden border-b border-border/60 bg-muted/20">
           <img
-            src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}${screenshot.src}`}
+            src={getImageSrc(screenshot.src)}
             alt={screenshot.alt}
             className="h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
             loading="lazy"

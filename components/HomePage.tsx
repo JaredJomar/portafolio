@@ -7,6 +7,7 @@ import Header from "@/components/Header"
 import Skills from "@/components/Skills"
 import { projects } from "@/data/projects"
 import { SITE_URL, SOCIAL_LINKS } from "@/lib/site"
+import { getImageSrc } from "@/lib/utils"
 
 type Locale = "en" | "es"
 
@@ -185,7 +186,7 @@ export default function HomePage({ locale }: { locale: Locale }) {
                     {previewProject.screenshots?.[0] ? (
                       <div className="overflow-hidden rounded-2xl border border-border/60 bg-muted/30">
                         <img
-                          src={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}${previewProject.screenshots[0].src}`}
+                          src={getImageSrc(previewProject.screenshots[0].src)}
                           alt={previewProject.screenshots[0].alt}
                           className="h-60 w-full object-cover object-top"
                           loading="eager"
