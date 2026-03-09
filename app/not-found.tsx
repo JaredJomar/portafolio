@@ -19,7 +19,7 @@ export default function NotFound() {
               English projects
             </Link>
             <Link href="/es/projects" className="btn-secondary text-center">
-              Proyectos en Espanol
+              Proyectos en Español
             </Link>
           </div>
         </div>

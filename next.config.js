@@ -1,3 +1,5 @@
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? ""
+
 const nextConfig = {
   output: "export",
   reactStrictMode: true,
@@ -25,29 +27,16 @@ const nextConfig = {
         hostname: "wakatime.com",
         pathname: "**",
       },
+      {
+        protocol: "https",
+        hostname: "raw.githubusercontent.com",
+        pathname: "**",
+      },
     ],
   },
-  basePath: process.env.NODE_ENV === "production" ? "/portafolio" : "",
-  assetPrefix: process.env.NODE_ENV === "production" ? "/portafolio/" : "",
+  basePath,
+  assetPrefix: basePath ? `${basePath}/` : "",
   trailingSlash: true,
-  async redirects() {
-    if (process.env.NODE_ENV === "production") {
-      return []
-    }
-
-    return [
-      {
-        source: "/portafolio",
-        destination: "/",
-        permanent: false,
-      },
-      {
-        source: "/portafolio/:path*",
-        destination: "/:path*",
-        permanent: false,
-      },
-    ]
-  },
 }
 
 module.exports = nextConfig

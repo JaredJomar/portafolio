@@ -1,8 +1,11 @@
 import type { Metadata } from "next"
 
+import HtmlLanguage from "@/components/HtmlLanguage"
+
 export const metadata: Metadata = {
-  title: "Jared Cruz - Portfolio",
-  description: "Personal portfolio of Jared Cruz, Computer Engineering Student",
+  title: "English Portfolio",
+  description:
+    "English portfolio of Jared Cruz with selected full-stack, desktop, and automation case studies.",
   alternates: {
     canonical: "/en/",
     languages: {
@@ -20,5 +23,10 @@ export default function EnLayout({
 }: {
   children: React.ReactNode
 }) {
-  return <div lang="en">{children}</div>
+  return (
+    <>
+      <HtmlLanguage lang="en" />
+      {children}
+    </>
+  )
 }

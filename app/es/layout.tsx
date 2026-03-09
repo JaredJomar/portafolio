@@ -1,8 +1,11 @@
 import type { Metadata } from "next"
 
+import HtmlLanguage from "@/components/HtmlLanguage"
+
 export const metadata: Metadata = {
-  title: "Jared Cruz - Portafolio",
-  description: "Portafolio personal de Jared Cruz, estudiante de Ingenieria en Computadoras",
+  title: "Portafolio en Español",
+  description:
+    "Portafolio en español de Jared Cruz con casos de estudio full-stack, desktop y automatización.",
   alternates: {
     canonical: "/es/",
     languages: {
@@ -20,5 +23,10 @@ export default function EsLayout({
 }: {
   children: React.ReactNode
 }) {
-  return <div lang="es">{children}</div>
+  return (
+    <>
+      <HtmlLanguage lang="es" />
+      {children}
+    </>
+  )
 }

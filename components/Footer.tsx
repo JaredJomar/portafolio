@@ -1,14 +1,33 @@
 "use client"
 
-import Image from "next/image"
 import { Github, Linkedin, Mail, ArrowUp } from "lucide-react"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
+
+import { SOCIAL_LINKS } from "@/lib/site"
 
 export default function Footer() {
+  const pathname = usePathname()
+  const isSpanish = pathname.startsWith("/es")
+  const localeHome = isSpanish ? "/es" : "/en"
+
+  const copy = {
+    home: isSpanish ? "Inicio" : "Home",
+    projects: isSpanish ? "Proyectos" : "Projects",
+    skills: isSpanish ? "Capacidades" : "Capabilities",
+    contact: isSpanish ? "Contacto" : "Contact",
+    builtWith: isSpanish
+      ? "Hecho con Next.js, Tailwind CSS y un enfoque en la claridad."
+      : "Built with Next.js, Tailwind CSS, and a bias for clarity.",
+    copyright: isSpanish
+      ? `© ${new Date().getFullYear()} Jared Cruz. Portafolio bilingüe.`
+      : `© ${new Date().getFullYear()} Jared Cruz. Bilingual portfolio.`,
+  }
+
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: "smooth"
+      behavior: "smooth",
     })
   }
 
@@ -20,7 +39,7 @@ export default function Footer() {
 
           <div className="flex space-x-5 mb-6 md:mb-0">
             <a
-              href="https://github.com/JaredJomar"
+              href={SOCIAL_LINKS.github}
               target="_blank"
               rel="noopener noreferrer"
               className="p-2 rounded-full hover:bg-secondary/10 transition-colors"
@@ -29,7 +48,7 @@ export default function Footer() {
               <Github className="w-5 h-5" />
             </a>
             <a
-              href="https://www.linkedin.com/in/jared-cruz-880359263/"
+              href={SOCIAL_LINKS.linkedin}
               target="_blank"
               rel="noopener noreferrer"
               className="p-2 rounded-full hover:bg-secondary/10 transition-colors"
@@ -38,7 +57,7 @@ export default function Footer() {
               <Linkedin className="w-5 h-5" />
             </a>
             <a
-              href="mailto:jared.cruz@upr.edu"
+              href={SOCIAL_LINKS.email}
               className="p-2 rounded-full hover:bg-secondary/10 transition-colors"
               aria-label="Email"
             >
@@ -55,38 +74,33 @@ export default function Footer() {
           </button>
         </div>
 
-        <div className="border-t border-border/20 pt-6 pb-4 flex flex-col md:flex-row justify-between items-center">
-          <div className="flex justify-center space-x-4 mb-4 md:mb-0">
-            <Image
-              src="https://img.shields.io/github/followers/JaredJomar?logo=github&style=for-the-badge&color=3382ed&labelColor=1c1917"
-              alt="GitHub followers"
-              width={150}
-              height={28}
-              className="rounded"
-              loading="lazy"
-              sizes="150px"
-            />
-            <Image
-              src="https://wakatime.com/badge/user/628ab87c-405a-4a29-8c87-079bc17f01c2.svg"
-              alt="WakaTime stats"
-              width={190}
-              height={28}
-              className="rounded"
-              loading="lazy"
-              sizes="190px"
-            />
+        <div className="border-t border-border/20 pt-6 pb-4 flex flex-col md:flex-row justify-between items-center gap-4">
+          <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-muted-foreground">
+            <Link href={localeHome} className="transition-colors hover:text-foreground">
+              {copy.home}
+            </Link>
+            <Link
+              href={`${localeHome}/projects`}
+              className="transition-colors hover:text-foreground"
+            >
+              {copy.projects}
+            </Link>
+            <Link
+              href={`${localeHome}#skills`}
+              className="transition-colors hover:text-foreground"
+            >
+              {copy.skills}
+            </Link>
+            <a href={SOCIAL_LINKS.email} className="transition-colors hover:text-foreground">
+              {copy.contact}
+            </a>
           </div>
 
-          <div className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} Jared Cruz. All projects under MIT License.
-          </div>
+          <div className="text-sm text-muted-foreground">{copy.copyright}</div>
         </div>
 
-        <div className="mt-4 text-center text-xs text-muted-foreground/60">
-          Built with Next.js, Tailwind CSS, and 💙
-        </div>
+        <div className="mt-4 text-center text-xs text-muted-foreground/60">{copy.builtWith}</div>
       </div>
     </footer>
   )
 }
-

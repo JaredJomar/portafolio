@@ -1,0 +1,43 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#0F172A"/>
+  <rect x="48" y="48" width="1104" height="534" rx="32" fill="url(#paint0_linear)"/>
+  <rect x="96" y="96" width="220" height="36" rx="18" fill="#DBEAFE"/>
+  <text x="126" y="119" fill="#1D4ED8" font-family="Arial, sans-serif" font-size="20" font-weight="700">
+    Full-stack portfolio
+  </text>
+  <text x="96" y="228" fill="white" font-family="Arial, sans-serif" font-size="72" font-weight="700">
+    Jared Cruz
+  </text>
+  <text x="96" y="306" fill="#BFDBFE" font-family="Arial, sans-serif" font-size="34" font-weight="600">
+    Practical systems, clear interfaces, and maintainable delivery.
+  </text>
+  <text x="96" y="380" fill="#CBD5E1" font-family="Arial, sans-serif" font-size="28">
+    React, Next.js, Python, desktop tools, APIs, and applied AI workflows.
+  </text>
+  <rect x="96" y="454" width="284" height="68" rx="20" fill="#2563EB"/>
+  <text x="134" y="497" fill="white" font-family="Arial, sans-serif" font-size="28" font-weight="700">
+    jaredjomar.github.io
+  </text>
+  <rect x="820" y="120" width="236" height="124" rx="24" fill="#111827" fill-opacity="0.72"/>
+  <text x="854" y="172" fill="#93C5FD" font-family="Arial, sans-serif" font-size="22" font-weight="700">
+    Selected work
+  </text>
+  <text x="854" y="208" fill="white" font-family="Arial, sans-serif" font-size="26" font-weight="700">
+    WalletAlert
+  </text>
+  <text x="854" y="288" fill="white" font-family="Arial, sans-serif" font-size="26" font-weight="700">
+    Transcriber
+  </text>
+  <text x="854" y="368" fill="white" font-family="Arial, sans-serif" font-size="26" font-weight="700">
+    PDF Tool
+  </text>
+  <text x="854" y="448" fill="white" font-family="Arial, sans-serif" font-size="26" font-weight="700">
+    VIC
+  </text>
+  <defs>
+    <linearGradient id="paint0_linear" x1="96" y1="96" x2="1104" y2="534" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1E3A8A"/>
+      <stop offset="1" stop-color="#0F172A"/>
+    </linearGradient>
+  </defs>
+</svg>

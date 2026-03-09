@@ -1,77 +1,63 @@
 "use client"
 
-import { Code, Database, Terminal, BrainCog, Laptop, Layers } from "lucide-react"
+import { Code2, Database, Bot, MonitorSmartphone } from "lucide-react"
 import { motion } from "framer-motion"
 
 type Locale = "en" | "es"
 
-const skills = [
+const capabilityGroups = [
   {
-    category: {
-      en: "Programming Languages",
-      es: "Lenguajes de programacion",
-    },
-    items: ["C++", "Java", "Python", "JavaScript", "TypeScript"],
-    icon: <Code className="w-6 h-6" />,
+    icon: MonitorSmartphone,
     color: "from-blue-500 to-cyan-400",
+    category: {
+      en: "Frontend delivery",
+      es: "Entrega frontend",
+    },
+    items: ["React", "Next.js", "Tailwind CSS", "TypeScript", "Accessible UI patterns"],
   },
   {
+    icon: Database,
+    color: "from-emerald-500 to-lime-400",
     category: {
-      en: "Web Development",
-      es: "Desarrollo web",
+      en: "Backend and data",
+      es: "Backend y datos",
     },
-    items: ["HTML5", "CSS3", "React", "Next.js", "Tailwind CSS"],
-    icon: <Laptop className="w-6 h-6" />,
-    color: "from-purple-500 to-pink-500",
+    items: ["Node.js", "Express", "MongoDB", "PostgreSQL", "REST APIs"],
   },
   {
+    icon: Code2,
+    color: "from-amber-500 to-orange-400",
     category: {
-      en: "Databases & Backend",
-      es: "Bases de datos y backend",
+      en: "Desktop and tooling",
+      es: "Desktop y tooling",
     },
-    items: ["MySQL", "PostgreSQL", "Node.js", "RESTful APIs", "GraphQL"],
-    icon: <Database className="w-6 h-6" />,
-    color: "from-green-500 to-emerald-400",
+    items: ["Python", "PyQt5", "PyQt6", "FFmpeg", "yt-dlp"],
   },
   {
+    icon: Bot,
+    color: "from-violet-500 to-fuchsia-400",
     category: {
-      en: "DevOps & Tools",
-      es: "DevOps y herramientas",
+      en: "Automation and AI workflows",
+      es: "Automatización e IA aplicada",
     },
-    items: ["Docker", "Git", "Linux", "Heroku", "CI/CD"],
-    icon: <Layers className="w-6 h-6" />,
-    color: "from-orange-500 to-amber-400",
-  },
-  {
-    category: {
-      en: "Scripting & Automation",
-      es: "Scripting y automatizacion",
-    },
-    items: ["Bash", "PowerShell", "Python Scripts", "Batch Files"],
-    icon: <Terminal className="w-6 h-6" />,
-    color: "from-red-500 to-rose-400",
-  },
-  {
-    category: {
-      en: "AI & ML",
-      es: "IA y ML",
-    },
-    items: ["TensorFlow", "PyTorch", "NLP", "Computer Vision"],
-    icon: <BrainCog className="w-6 h-6" />,
-    color: "from-indigo-500 to-violet-400",
+    items: ["OpenAI Whisper", "NLP", "ETL", "Browser automation", "Scripting workflows"],
   },
 ]
 
-const copy: Record<Locale, { title: string; subtitle: string }> = {
+const copy = {
   en: {
-    title: "My Skills",
-    subtitle: "Technologies and tools I've worked with to build projects and solve problems",
+    eyebrow: "Capabilities",
+    title: "Core areas I ship in",
+    subtitle:
+      "A concise view of the technologies and delivery patterns that appear repeatedly across the portfolio.",
   },
   es: {
-    title: "Mis habilidades",
-    subtitle: "Tecnologias y herramientas que he usado para construir proyectos y resolver problemas",
+    eyebrow: "Capacidades",
+    title: "Áreas principales donde entrego",
+    subtitle:
+      "Vista breve de las tecnologías y patrones de entrega que aparecen repetidamente en el portafolio.",
   },
-}
+} as const
 
 export default function Skills({ locale = "en" }: { locale?: Locale }) {
   const container = {
@@ -79,30 +65,37 @@ export default function Skills({ locale = "en" }: { locale?: Locale }) {
     show: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1
-      }
-    }
+        staggerChildren: 0.08,
+      },
+    },
   }
 
   const item = {
     hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.45 },
+    },
   }
 
   return (
     <section id="skills" className="py-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          transition={{ duration: 0.55 }}
+          className="max-w-2xl"
         >
-          <h2 className="text-4xl font-bold mb-4 bg-gradient-text inline-block">{copy[locale].title}</h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            {copy[locale].subtitle}
+          <p className="text-sm font-semibold uppercase tracking-[0.24em] text-primary/80">
+            {copy[locale].eyebrow}
           </p>
+          <h2 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">
+            {copy[locale].title}
+          </h2>
+          <p className="mt-4 text-lg text-muted-foreground">{copy[locale].subtitle}</p>
         </motion.div>
 
         <motion.div
@@ -110,28 +103,39 @@ export default function Skills({ locale = "en" }: { locale?: Locale }) {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2"
         >
-          {skills.map((category, index) => (
-            <motion.div key={index} variants={item}>
-              <div className="glass-effect p-6 h-full border border-border/30 rounded-xl hover:shadow-lg transition-all duration-300 hover:border-primary/20">
-                <div className="flex items-center mb-6">
-                  <div className={`p-3 rounded-lg bg-gradient-to-br ${category.color} text-white`}>
-                    {category.icon}
+          {capabilityGroups.map((group) => {
+            const Icon = group.icon
+
+            return (
+              <motion.article
+                key={group.category.en}
+                variants={item}
+                className="rounded-3xl border border-border/60 bg-card/75 p-6 shadow-sm"
+              >
+                <div className="flex items-center gap-4">
+                  <div
+                    className={`rounded-2xl bg-gradient-to-br ${group.color} p-3 text-white shadow-sm`}
+                  >
+                    <Icon className="h-6 w-6" />
                   </div>
-                  <h3 className="text-xl font-bold ml-3">{category.category[locale]}</h3>
+                  <h3 className="text-xl font-semibold">{group.category[locale]}</h3>
                 </div>
-                <ul className="space-y-3">
-                  {category.items.map((skill, skillIndex) => (
-                    <li key={skillIndex} className="text-muted-foreground flex items-center">
-                      <span className={`w-2 h-2 bg-gradient-to-r ${category.color} rounded-full mr-3`}></span>
+
+                <ul className="mt-6 grid gap-3">
+                  {group.items.map((skill) => (
+                    <li
+                      key={skill}
+                      className="rounded-2xl border border-border/60 bg-background/60 px-4 py-3 text-sm text-muted-foreground"
+                    >
                       {skill}
                     </li>
                   ))}
                 </ul>
-              </div>
-            </motion.div>
-          ))}
+              </motion.article>
+            )
+          })}
         </motion.div>
       </div>
     </section>

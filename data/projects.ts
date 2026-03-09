@@ -1,10 +1,12 @@
 import type {
   Project,
+  ProjectCollection,
   ProjectContent,
   ProjectLocaleContent,
 } from "../types/project"
+import { README_CONTENT_OVERRIDES } from "./projectReadmeContent"
 
-type ProjectSeed = Omit<Project, "content"> & {
+type ProjectSeed = Omit<Project, "content" | "collection"> & {
   content?: {
     en?: Partial<ProjectLocaleContent>
     es?: Partial<ProjectLocaleContent>
@@ -243,10 +245,10 @@ const buildDefaultSpanishFeatures = (
   seed: Pick<Project, "title" | "technologies">
 ) => {
   return [
-    `Implementacion enfocada para ${seed.title}`,
-    "Flujo principal documentado en el repositorio",
+    `Implementación centrada en el flujo principal de ${seed.title}`,
+    "Repositorio con punto de partida claro para revisar o extender el proyecto",
     `Stack principal: ${seed.technologies.slice(0, 4).join(", ")}`,
-    "Estructura lista para continuar iterando",
+    "Base lista para seguir iterando con nuevas funcionalidades",
   ]
 }
 
@@ -278,9 +280,9 @@ const createDefaultLocaleContent = (
 
   return {
     title: seed.title,
-    summary: `Caso de estudio de ${seed.title}: implementacion practica orientada a resultados.`,
-    problem: `Se necesitaba una solucion clara para el flujo principal de ${seed.title}.`,
-    solution: `${seed.title} se implemento con alcance definido, funcionalidades concretas y un repositorio publico para evolucionar el proyecto.`,
+    summary: `${seed.title} es un proyecto práctico construido para resolver un flujo concreto con alcance claro y base técnica reutilizable.`,
+    problem: `${seed.title} requería una solución clara para ejecutar su flujo principal de forma consistente y fácil de mantener.`,
+    solution: `${seed.title} se desarrolló con alcance definido, funcionalidades concretas y una base pública lista para revisar, adaptar o seguir evolucionando.`,
     features: buildDefaultSpanishFeatures(seed),
     stack: seed.technologies,
     links: {
@@ -305,6 +307,9 @@ const mergeLocaleContent = (
   return {
     ...base,
     ...override,
+    context: override?.context ?? base.context,
+    decisions: override?.decisions ?? base.decisions,
+    results: override?.results ?? base.results,
     features: override?.features ?? base.features,
     stack: override?.stack ?? base.stack,
     links: {
@@ -316,10 +321,46 @@ const mergeLocaleContent = (
 
 const mergeProjectContent = (seed: ProjectSeed): ProjectContent => {
   const defaults = createDefaultContent(seed)
+  const readmeOverrides = README_CONTENT_OVERRIDES[seed.slug]
+
   return {
-    en: mergeLocaleContent(defaults.en, seed.content?.en),
-    es: mergeLocaleContent(defaults.es, seed.content?.es),
+    en: mergeLocaleContent(
+      mergeLocaleContent(defaults.en, readmeOverrides?.en),
+      seed.content?.en
+    ),
+    es: mergeLocaleContent(
+      mergeLocaleContent(defaults.es, readmeOverrides?.es),
+      seed.content?.es
+    ),
   }
+}
+
+const automationProjectSlugs = new Set([
+  "animeflv-enhancements",
+  "disney-plus-enhancements",
+  "fast-search",
+  "lookmovie-ad-blocker",
+  "netflix-enhancements",
+  "auto-click-not-a-robot",
+  "perplexity-ai-enhancements",
+  "prime-video-enhancements",
+  "serieslan-enhancements",
+  "twitch-enhancements",
+  "html5-video-player-enhancements",
+  "youtube-enhancements",
+  "youtube-adblock-ban-bypass",
+])
+
+const getProjectCollection = (seed: ProjectSeed): ProjectCollection => {
+  if (seed.featured) {
+    return "featured"
+  }
+
+  if (automationProjectSlugs.has(seed.slug)) {
+    return "automation"
+  }
+
+  return "archive"
 }
 
 const projectSeeds: ProjectSeed[] = [
@@ -329,46 +370,81 @@ const projectSeeds: ProjectSeed[] = [
     title: "WalletAlert",
     icon: "fa-wallet",
     description:
-      "A smart budgeting companion designed for students. Set weekly and monthly budgets, log expenses, visualize spending trends with charts, and receive alerts before overspending. Features Auth0 authentication and optimistic UI updates.",
+      "A student-focused budgeting app with weekly and category budgets, fast expense logging, charts, proactive alerts, and Auth0-secured accounts.",
     technologies: ["React", "Node.js", "MongoDB", "Express", "Vite", "Auth0"],
     link: "https://github.com/uprm-torre/software-engineering-project-walletalert",
+    screenshots: [
+      {
+        src: "/walletalert-demo-desktop.png",
+        alt: "WalletAlert dashboard showing budgets, expense tracking, and spending charts",
+        caption: "Student budgeting dashboard",
+      },
+    ],
     content: {
       en: {
         summary:
-          "Budgeting web app for students: set budgets, log expenses, and get alerts before you overspend.",
+          "Student budgeting app built to keep expense tracking quick, visual, and realistic for weekly spending decisions.",
+        context:
+          "Built as a software engineering project around a common student pain point: small daily purchases add up fast, but most budgeting tools feel heavier than the workflow they are supposed to simplify.",
         problem:
-          "Students want visibility into day-to-day spending, but tracking across notes or spreadsheets is slow and easy to abandon.",
+          "Students need to set budgets, categorize expenses, and spot overspending early, but spreadsheets and generic finance apps create too much friction for quick daily use.",
         solution:
-          "A React app with an optimistic UX for logging expenses, chart-based insights, and budget alerts, secured with Auth0 and backed by a Node/Express API and MongoDB.",
-        features: [
-          "Weekly and monthly budgets",
-          "Quick expense logging and editing",
-          "Spending breakdowns and trend charts",
-          "Budget threshold alerts (before overspending)",
-          "Auth0 authentication and protected routes",
-          "Optimistic UI updates for snappy interactions",
+          "WalletAlert combines a React + Vite frontend, an Express API, MongoDB persistence, Recharts visualizations, and Auth0 authentication to deliver fast expense logging, budget monitoring, and clear trend visibility in one focused product.",
+        decisions: [
+          "Used optimistic UI updates so expense logging feels immediate instead of blocked by round-trips.",
+          "Scoped the product around weekly and category budgeting, which matches how students usually reason about spending better than long financial dashboards.",
+          "Added an in-memory fallback in development so the API remains usable even when MongoDB is not configured.",
+          "Documented local and Render deployment flows so the app could move from coursework to a shareable demo more easily.",
         ],
-        stack: ["React", "Node.js", "MongoDB", "Express", "Vite", "Auth0"],
+        features: [
+          "Weekly and category-based budgets",
+          "Quick expense creation, categorization, and editing",
+          "Spending breakdowns and charts with Recharts",
+          "Proactive alerts before overspending",
+          "Auth0 authentication and protected routes",
+          "Accessible custom modals and keyboard shortcuts",
+          "Local setup plus Render-ready deployment flow",
+        ],
+        results: [
+          "Turned budgeting into a lightweight daily interaction instead of an end-of-month cleanup task.",
+          "Connected product UX, authentication, persistence, testing, and deployment concerns in one coherent full-stack build.",
+          "Created a more credible featured case study by pairing user-facing polish with documented architecture and UML artifacts.",
+        ],
+        stack: ["React", "Vite", "Node.js", "Express", "MongoDB", "Auth0", "Recharts", "Vitest"],
         links: {
           repo: "https://github.com/uprm-torre/software-engineering-project-walletalert",
         },
       },
       es: {
         summary:
-          "App web de presupuesto para estudiantes: define presupuestos, registra gastos y recibe alertas antes de pasarte.",
+          "Aplicación de presupuesto para estudiantes pensada para que registrar gastos y entender el dinero semanal sea rápido, visual y sostenible.",
+        context:
+          "Proyecto de ingeniería de software enfocado en un problema común entre estudiantes: los gastos pequeños se acumulan rápido, pero muchas herramientas de presupuesto se sienten más pesadas que el problema que intentan resolver.",
         problem:
-          "Los estudiantes quieren visibilidad del gasto diario, pero llevar el control en notas o hojas de calculo es lento y se abandona facil.",
+          "Los estudiantes necesitan definir presupuestos, categorizar gastos y detectar excesos con anticipación, pero llevar el control en hojas de cálculo o apps genéricas genera demasiada fricción para el uso diario.",
         solution:
-          "App en React con UX agil (optimistic UI) para registrar gastos, ver insights con graficas y recibir alertas; autenticacion con Auth0 y API Node/Express con MongoDB.",
-        features: [
-          "Presupuestos semanales y mensuales",
-          "Registro y edicion rapida de gastos",
-          "Desglose y graficas de tendencia",
-          "Alertas por umbral de presupuesto",
-          "Autenticacion Auth0 y rutas protegidas",
-          "Actualizaciones optimistas para interacciones rapidas",
+          "WalletAlert combina un frontend en React + Vite, una API en Express, persistencia con MongoDB, gráficas con Recharts y autenticación con Auth0 para ofrecer registro rápido de gastos, monitoreo de presupuesto y visibilidad clara en un solo producto.",
+        decisions: [
+          "Se usó optimistic UI para que registrar un gasto se sintiera inmediato y no bloqueado por viajes al servidor.",
+          "El alcance se centró en presupuestos semanales y por categoría, que se ajustan mejor a cómo suelen pensar sus gastos muchos estudiantes.",
+          "Se añadió un fallback en memoria para desarrollo, de modo que la API siguiera siendo usable incluso sin MongoDB configurado.",
+          "Se documentaron flujos de ejecución local y despliegue en Render para volver el proyecto más fácil de compartir y demostrar.",
         ],
-        stack: ["React", "Node.js", "MongoDB", "Express", "Vite", "Auth0"],
+        features: [
+          "Presupuestos semanales y por categoría",
+          "Registro, categorización y edición rápida de gastos",
+          "Desglose del gasto y gráficas con Recharts",
+          "Alertas preventivas antes de exceder el presupuesto",
+          "Autenticación con Auth0 y rutas protegidas",
+          "Modales accesibles y atajos de teclado",
+          "Setup local y flujo de despliegue listo para Render",
+        ],
+        results: [
+          "Convirtió el presupuesto en una interacción ligera y frecuente, en lugar de una tarea manual de fin de mes.",
+          "Conectó UX de producto, autenticación, persistencia, testing y despliegue en una sola entrega full-stack.",
+          "Fortaleció el caso destacado al combinar pulido visual con documentación de arquitectura y diagramas UML.",
+        ],
+        stack: ["React", "Vite", "Node.js", "Express", "MongoDB", "Auth0", "Recharts", "Vitest"],
         links: {
           repo: "https://github.com/uprm-torre/software-engineering-project-walletalert",
         },
@@ -387,17 +463,29 @@ const projectSeeds: ProjectSeed[] = [
     content: {
       en: {
         summary:
-          "Streamlit-based virtual institutional counselor that helps students navigate academic information through an AI-assisted interface.",
+          "AI-assisted academic guidance tool that organizes scattered institutional information into a more usable student-facing experience.",
+        context:
+          "Designed around the reality that academic requirements, policies, and procedural information are usually spread across different documents and sources.",
         problem:
-          "Academic policies, requirements, and resources are spread across sources, so students need quick and consistent guidance.",
+          "Students need quick answers about academic processes, but the source material is fragmented, repetitive, and difficult to navigate consistently.",
         solution:
-          "A Python + Streamlit app backed by PostgreSQL, using NLP to interpret requests and an ETL flow to structure institutional data for retrieval.",
+          "VIC uses Python, Streamlit, PostgreSQL, NLP, and ETL pipelines to transform institutional content into a searchable guidance workflow that is easier to query and maintain.",
+        decisions: [
+          "Used Streamlit to move quickly on an interface centered on guided information retrieval rather than custom frontend complexity.",
+          "Added an ETL layer so institutional data could be normalized before retrieval instead of relying on raw source text.",
+          "Kept PostgreSQL as the structured storage layer to support repeatable lookups and rule-driven responses.",
+        ],
         features: [
           "Streamlit web UI for guidance sessions",
           "NLP layer to classify and route requests",
           "ETL pipeline to ingest and normalize institutional data",
           "PostgreSQL storage for structured program and rule data",
           "Reproducible local setup for demos and iteration",
+        ],
+        results: [
+          "Turned institutional guidance into a workflow that is faster to consult and easier to demonstrate.",
+          "Connected applied AI concepts to a concrete academic use case instead of a generic chatbot wrapper.",
+          "Created a stronger portfolio example of data preparation, retrieval logic, and user-facing delivery working together.",
         ],
         stack: ["Python", "Streamlit", "PostgreSQL", "NLP", "ETL"],
         links: {
@@ -406,17 +494,29 @@ const projectSeeds: ProjectSeed[] = [
       },
       es: {
         summary:
-          "Consejero institucional virtual en Streamlit que ayuda a estudiantes a navegar informacion academica con una interfaz asistida por IA.",
+          "Herramienta de orientación académica asistida por IA que organiza información institucional dispersa en una experiencia más útil para estudiantes.",
+        context:
+          "Nació de un problema común en la universidad: requisitos, políticas y procesos académicos repartidos entre múltiples documentos y fuentes.",
         problem:
-          "Politicas, requisitos y recursos academicos estan distribuidos en varias fuentes, asi que se necesita orientacion rapida y consistente.",
+          "Los estudiantes necesitan respuestas rápidas sobre procesos académicos, pero la información institucional suele estar fragmentada y es difícil de consultar de forma consistente.",
         solution:
-          "App en Python + Streamlit con base de datos PostgreSQL, usando NLP para interpretar solicitudes y un flujo ETL para estructurar datos institucionales para consulta.",
+          "VIC usa Python, Streamlit, PostgreSQL, NLP y procesos ETL para transformar contenido institucional disperso en un flujo de orientación más claro, consultable y mantenible.",
+        decisions: [
+          "Se eligió Streamlit para avanzar rápido con una interfaz centrada en la consulta guiada, sin cargar el proyecto con complejidad frontend innecesaria.",
+          "Se añadió una capa ETL para normalizar la información antes de consultarla, en lugar de depender de texto crudo.",
+          "Se mantuvo PostgreSQL como base estructurada para soportar consultas repetibles y respuestas guiadas por reglas.",
+        ],
         features: [
-          "UI web en Streamlit para sesiones de orientacion",
-          "Capa NLP para clasificar y enrutar solicitudes",
-          "Pipeline ETL para ingestacion y normalizacion de datos",
+          "Interfaz web en Streamlit para sesiones de orientación",
+          "Capa de NLP para clasificar y enrutar solicitudes",
+          "Pipeline ETL para la ingestión y normalización de datos",
           "Almacenamiento en PostgreSQL para datos estructurados",
-          "Setup reproducible para demos e iteracion",
+          "Setup reproducible para demos e iteración",
+        ],
+        results: [
+          "Convirtió la orientación institucional en un flujo más rápido de consultar y más fácil de demostrar.",
+          "Conectó conceptos de IA aplicada con un caso universitario concreto, en lugar de limitarse a un chatbot genérico.",
+          "Fortaleció el portafolio con un ejemplo claro de preparación de datos, lógica de consulta y entrega al usuario final trabajando en conjunto.",
         ],
         stack: ["Python", "Streamlit", "PostgreSQL", "NLP", "ETL"],
         links: {
@@ -534,11 +634,18 @@ const projectSeeds: ProjectSeed[] = [
     content: {
       en: {
         summary:
-          "Desktop PDF utility that consolidates common PDF tasks into one fast, offline app.",
+          "Offline desktop utility that consolidates repetitive PDF operations into one predictable workspace.",
+        context:
+          "Built around a practical workflow problem: common PDF tasks are simple on their own, but usually scattered across multiple tools and websites.",
         problem:
-          "Everyday PDF operations (merge, split, extract, rotate, compress, convert) often require bouncing between multiple tools.",
+          "Routine PDF tasks like merging, splitting, extracting, rotating, and compressing are common, but switching tools for each one creates unnecessary friction.",
         solution:
-          "A PyQt6 desktop app that wraps proven PDF libraries into a single workflow, with clear inputs and predictable results.",
+          "PDF Tool packages several proven Python PDF libraries into a single PyQt6 desktop interface so the user can stay in one workflow from input to output.",
+        decisions: [
+          "Kept the app offline-first to avoid upload friction and make the tool more practical for repeated local use.",
+          "Grouped related actions into one interface instead of optimizing for a single PDF operation.",
+          "Used mature libraries behind the scenes so the value came from workflow design, not reinventing document processing primitives.",
+        ],
         features: [
           "Merge multiple PDFs into one",
           "Split PDFs into individual pages",
@@ -547,6 +654,11 @@ const projectSeeds: ProjectSeed[] = [
           "Compress PDFs to reduce file size",
           "Convert PDFs to other formats (where supported)",
         ],
+        results: [
+          "Reduced a multi-tool document workflow to one local utility.",
+          "Demonstrated practical desktop product design rather than a single-script utility.",
+          "Added a portfolio piece that shows packaging multiple technical capabilities behind a simpler user experience.",
+        ],
         stack: ["Python", "PyQt6", "PyPDF2", "PyMuPDF", "pdf2docx"],
         links: {
           repo: "https://github.com/JaredJomar/Projects/tree/main/Pdf_Combiner",
@@ -554,18 +666,30 @@ const projectSeeds: ProjectSeed[] = [
       },
       es: {
         summary:
-          "Utilidad de escritorio para PDFs que concentra tareas comunes en una sola app offline.",
+          "Utilidad de escritorio offline que reúne en una sola app las operaciones de PDF más comunes del día a día.",
+        context:
+          "Se construyó a partir de un problema muy práctico: tareas sencillas sobre PDF suelen estar repartidas entre varias herramientas o sitios web.",
         problem:
-          "Operaciones diarias de PDF (unir, dividir, extraer, rotar, comprimir, convertir) suelen requerir varias herramientas.",
+          "Operaciones rutinarias como unir, dividir, extraer, rotar o comprimir PDFs son frecuentes, pero cambiar de herramienta para cada una agrega fricción innecesaria.",
         solution:
-          "App de escritorio en PyQt6 que integra librerias de PDF en un flujo unico, con entradas claras y resultados predecibles.",
+          "PDF Tool reúne varias librerías maduras de procesamiento de PDF dentro de una interfaz PyQt6 para resolver todo el flujo en un solo lugar.",
+        decisions: [
+          "Se mantuvo como herramienta offline para evitar fricción por carga de archivos y hacerla más útil en uso repetido.",
+          "Se priorizó una interfaz única con varias acciones relacionadas, en lugar de optimizar solo una operación.",
+          "Se aprovecharon librerías probadas para que el valor del proyecto estuviera en el diseño del flujo y no en reinventar el procesamiento documental.",
+        ],
         features: [
           "Unir varios PDFs en uno",
-          "Dividir PDFs en paginas individuales",
-          "Extraer rangos de paginas",
-          "Rotar paginas para correccion",
-          "Comprimir PDFs para reducir tamano",
-          "Convertir PDFs a otros formatos (segun soporte)",
+          "Dividir PDFs en páginas individuales",
+          "Extraer rangos de páginas",
+          "Rotar páginas para corrección",
+          "Comprimir PDFs para reducir tamaño",
+          "Convertir PDFs a otros formatos (según soporte)",
+        ],
+        results: [
+          "Redujo un flujo documental de varias herramientas a una sola utilidad local.",
+          "Demostró diseño de producto para escritorio más allá de un script puntual.",
+          "Sumó al portafolio una pieza que empaqueta varias capacidades técnicas detrás de una experiencia más simple para el usuario.",
         ],
         stack: ["Python", "PyQt6", "PyPDF2", "PyMuPDF", "pdf2docx"],
         links: {
@@ -605,17 +729,29 @@ const projectSeeds: ProjectSeed[] = [
     content: {
       en: {
         summary:
-          "PyQt6 desktop client that downloads audio from any URL supported by yt-dlp (including YouTube videos and playlists), picks the right Whisper backend, and exports Markdown transcripts with metadata.",
+          "Desktop transcription workflow that turns supported media URLs into structured transcripts without juggling terminal tools.",
+        context:
+          "Created around a repeated workflow: downloading media, selecting the right transcription backend, and formatting clean output usually requires several separate tools.",
         problem:
           "Transcribing audio from any URL supported by yt-dlp (including YouTube videos and playlists) required memorizing yt-dlp/ffmpeg flags and juggling multiple tools for backend selection and output formatting.",
         solution:
-          "Transcriber wraps yt-dlp, Whisper, and FFmpeg inside a focused PyQt6 workflow so you can pick a model, backend, and language, then get a clean transcript without terminal commands.",
+          "Transcriber wraps yt-dlp, Whisper, and FFmpeg in a focused PyQt6 workflow where the user can choose model, backend, language, and output preferences without leaving the app.",
+        decisions: [
+          "Exposed backend choice explicitly so the workflow can adapt to CUDA, DirectML, or CPU depending on the machine.",
+          "Included visible logs and configurable paths because media and transcription pipelines fail in real-world ways that users need to inspect.",
+          "Exported Markdown with metadata so the output is useful beyond raw text capture.",
+        ],
         features: [
           "Download audio from single videos or entire playlists using yt-dlp",
           "Select Whisper model (tiny/base/small/medium) with language or auto-detect",
           "Choose CUDA, DirectML, or CPU backend and keep logs visible",
           "Customize ffmpeg/yt-dlp paths, output folder, and theme (system/light/dark)",
           "Export transcripts as Markdown files that include video metadata",
+        ],
+        results: [
+          "Turned a multi-tool terminal-heavy workflow into a single desktop experience.",
+          "Shows stronger product thinking around AI tooling, configuration, and output quality.",
+          "Adds a portfolio piece with clear value for creators, researchers, or anyone working with long-form audio content.",
         ],
         stack: [
           "Python",
@@ -631,17 +767,29 @@ const projectSeeds: ProjectSeed[] = [
       },
       es: {
         summary:
-          "Cliente de escritorio en PyQt6 que descarga audio de cualquier URL soportada por yt-dlp (incluyendo videos y playlists de YouTube), elige backend Whisper adecuado y guarda transcripciones Markdown con metadata.",
+          "Flujo de transcripción de escritorio que convierte URLs compatibles en transcripciones estructuradas sin depender de varias herramientas de terminal.",
+        context:
+          "Se diseñó a partir de un flujo repetido: descargar medios, elegir el backend de transcripción correcto y formatear una salida limpia suele requerir varias herramientas separadas.",
         problem:
           "Transcribir audio de cualquier URL soportada por yt-dlp (incluyendo videos y playlists de YouTube) exigía aprender flags de yt-dlp/ffmpeg y coordinar varias herramientas para escoger backend y formatear la salida.",
         solution:
-          "Transcriber unifica yt-dlp, Whisper y FFmpeg en un flujo PyQt6 donde eliges modelo, backend e idioma y obtienes una transcripción limpia sin terminal.",
+          "Transcriber unifica yt-dlp, Whisper y FFmpeg en un flujo PyQt6 donde el usuario puede elegir modelo, backend, idioma y preferencias de salida sin salir de la aplicación.",
+        decisions: [
+          "Se expuso la elección del backend para adaptarse a CUDA, DirectML o CPU según la máquina disponible.",
+          "Se mantuvieron logs visibles y rutas configurables porque estos flujos fallan de formas reales que el usuario necesita inspeccionar.",
+          "Se exportó en Markdown con metadatos para que la salida sea útil más allá del texto crudo.",
+        ],
         features: [
           "Descarga audio de videos individuales o playlists completas con yt-dlp",
-          "Elige modelo Whisper (tiny/base/small/medium) con idioma fijo o detección automática",
-          "Selecciona backend CUDA, DirectML o CPU y mantén visibles los logs",
+          "Elige el modelo Whisper (tiny/base/small/medium) con idioma fijo o detección automática",
+          "Selecciona backend CUDA, DirectML o CPU y mantiene visibles los logs del proceso",
           "Configura rutas de ffmpeg/yt-dlp, carpeta de salida y tema (sistema/claro/oscuro)",
-          "Exporta transcripciones en Markdown con metadata del video",
+          "Exporta transcripciones en Markdown con metadatos del video",
+        ],
+        results: [
+          "Convirtió un flujo técnico y fragmentado en una experiencia de escritorio unificada.",
+          "Muestra mejor criterio de producto alrededor de tooling con IA, configuración y calidad de salida.",
+          "Aporta al portafolio una pieza con valor claro para creadores, investigadores o usuarios que trabajan con audio largo.",
         ],
         stack: [
           "Python",
@@ -700,17 +848,17 @@ const projectSeeds: ProjectSeed[] = [
       },
       es: {
         summary:
-          "App de escritorio en PyQt5 que facilita descargas con yt-dlp y conversion con FFmpeg sin depender de la terminal.",
+          "Aplicación de escritorio en PyQt5 que hace más accesibles las descargas con yt-dlp y la conversión con FFmpeg sin depender de la terminal.",
         problem:
-          "yt-dlp es potente, pero recordar flags y pasos de post-procesado agrega friccion cuando solo quieres una descarga rapida o una conversion.",
+          "yt-dlp es potente, pero recordar flags y pasos de postprocesado agrega fricción cuando solo quieres una descarga rápida o una conversión.",
         solution:
-          "GUI alrededor de yt-dlp con post-procesado en FFmpeg para conversiones, con un flujo explicito y repetible.",
+          "Se creó una interfaz gráfica alrededor de yt-dlp con postprocesado en FFmpeg para ofrecer un flujo explícito, repetible y fácil de usar.",
         features: [
-          "Descargar video o audio con yt-dlp",
-          "Seleccionar opciones disponibles de formato y calidad",
-          "Post-procesado con FFmpeg para conversion o remux",
-          "Flujo de escritorio para descargas repetibles",
-          "Configuracion simple y seleccion de salida",
+          "Descarga video o audio con yt-dlp",
+          "Permite elegir formato y calidad entre las opciones disponibles",
+          "Aplica postprocesado con FFmpeg para conversión o remux",
+          "Ofrece un flujo de escritorio para descargas repetibles",
+          "Incluye configuración simple y selección de salida",
         ],
         stack: ["Python", "PyQt5", "yt-dlp", "FFmpeg"],
         links: {
@@ -841,6 +989,7 @@ const projectSeeds: ProjectSeed[] = [
 export const projects: Project[] = projectSeeds.map((seed) => {
   return {
     ...seed,
+    collection: getProjectCollection(seed),
     content: mergeProjectContent(seed),
   }
 })

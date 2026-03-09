@@ -1,3 +1,5 @@
+export type ProjectCollection = "featured" | "archive" | "automation"
+
 export interface ProjectLinks {
   repo?: string
   live?: string
@@ -7,8 +9,11 @@ export interface ProjectLinks {
 export interface ProjectLocaleContent {
   title: string
   summary: string
+  context?: string
   problem: string
   solution: string
+  decisions?: string[]
+  results?: string[]
   features: string[]
   stack: string[]
   links: ProjectLinks
@@ -28,6 +33,7 @@ export interface ProjectScreenshot {
 export interface Project {
   slug: string
   featured?: boolean
+  collection: ProjectCollection
 
   // Legacy fields kept for incremental rollout.
   title: string
