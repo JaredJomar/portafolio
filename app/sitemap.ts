@@ -3,6 +3,8 @@ import type { MetadataRoute } from "next"
 import { projects } from "@/data/projects"
 import { SITE_URL } from "@/lib/site"
 
+export const dynamic = "force-static"
+
 const buildUrl = (path: string) => `${SITE_URL}${path}`
 
 export default function sitemap(): MetadataRoute.Sitemap {
