@@ -378,7 +378,7 @@ const projectSeeds: ProjectSeed[] = [
         summary:
           "In-progress capstone project: a responsive web platform for managing Puerto Rico's archaeological data, with structured record forms, map visualization, and role-based access. I lead the front-end work on a 5-person team.",
         context:
-          "Built as the Computer Engineering capstone at UPR Mayagüez for a real client: archaeologists and institutions in Puerto Rico need a centralized, reliable way to record, locate, and manage archaeological findings.",
+          "Built as the Computer Engineering capstone at UPR Mayagüez for the UC San Diego Department of Anthropology, which needs a centralized, reliable way to record, locate, and manage Puerto Rico's archaeological data.",
         problem:
           "Archaeological records are scattered across documents and formats, making them hard to search, visualize geographically, and share with the right access controls.",
         solution:
@@ -405,7 +405,7 @@ const projectSeeds: ProjectSeed[] = [
         summary:
           "Proyecto capstone en curso: plataforma web responsiva para gestionar los datos arqueológicos de Puerto Rico, con formularios estructurados, visualización en mapa y acceso por roles. Lidero el front-end en un equipo de 5 personas.",
         context:
-          "Proyecto capstone de Ingeniería en Computadoras en UPR Mayagüez para un cliente real: arqueólogos e instituciones en Puerto Rico necesitan una forma centralizada y confiable de registrar, ubicar y gestionar hallazgos arqueológicos.",
+          "Proyecto capstone de Ingeniería en Computadoras en UPR Mayagüez para el Departamento de Antropología de UC San Diego, que necesita una forma centralizada y confiable de registrar, ubicar y gestionar los datos arqueológicos de Puerto Rico.",
         problem:
           "Los registros arqueológicos están dispersos entre documentos y formatos, lo que dificulta buscarlos, visualizarlos geográficamente y compartirlos con los controles de acceso adecuados.",
         solution:
