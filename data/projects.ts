@@ -365,6 +365,72 @@ const getProjectCollection = (seed: ProjectSeed): ProjectCollection => {
 
 const projectSeeds: ProjectSeed[] = [
   {
+    slug: "arca",
+    featured: true,
+    title: "ARCA",
+    icon: "fa-landmark",
+    description:
+      "Capstone web platform for managing Puerto Rico's archaeological records: structured record forms, map visualization, and role-based access. Front-end lead on a 5-person team. In progress — client delivery November 2026.",
+    technologies: ["React", "Next.js", "Tailwind CSS", "TypeScript"],
+    link: "https://jaredjomar.github.io/portafolio/en/projects/arca",
+    content: {
+      en: {
+        summary:
+          "In-progress capstone project: a responsive web platform for managing Puerto Rico's archaeological data, with structured record forms, map visualization, and role-based access. I lead the front-end work on a 5-person team.",
+        context:
+          "Built as the Computer Engineering capstone at UPR Mayagüez for a real client: archaeologists and institutions in Puerto Rico need a centralized, reliable way to record, locate, and manage archaeological findings.",
+        problem:
+          "Archaeological records are scattered across documents and formats, making them hard to search, visualize geographically, and share with the right access controls.",
+        solution:
+          "ARCA centralizes archaeological records in a structured web platform: guided record forms, an interactive map view of findings, and role-based access so each user type sees and edits exactly what they should.",
+        decisions: [
+          "Scoped my front-end work around reusable components and forms so record entry stays consistent across record types.",
+          "Designed the map visualization to make spatial patterns in the data immediately visible.",
+          "Planned role-based UI states early so permissions shape the interface, not just the API.",
+        ],
+        features: [
+          "Structured record forms for archaeological findings",
+          "Interactive map visualization of records",
+          "Role-based access with differentiated interfaces",
+          "Responsive layouts for field and office use",
+          "Integration with backend APIs for records and auth",
+        ],
+        results: [
+          "In progress — client delivery planned for November 2026.",
+        ],
+        stack: ["React", "Next.js", "Tailwind CSS", "TypeScript"],
+        links: {},
+      },
+      es: {
+        summary:
+          "Proyecto capstone en curso: plataforma web responsiva para gestionar los datos arqueológicos de Puerto Rico, con formularios estructurados, visualización en mapa y acceso por roles. Lidero el front-end en un equipo de 5 personas.",
+        context:
+          "Proyecto capstone de Ingeniería en Computadoras en UPR Mayagüez para un cliente real: arqueólogos e instituciones en Puerto Rico necesitan una forma centralizada y confiable de registrar, ubicar y gestionar hallazgos arqueológicos.",
+        problem:
+          "Los registros arqueológicos están dispersos entre documentos y formatos, lo que dificulta buscarlos, visualizarlos geográficamente y compartirlos con los controles de acceso adecuados.",
+        solution:
+          "ARCA centraliza los registros arqueológicos en una plataforma web estructurada: formularios guiados, vista de mapa interactiva y acceso por roles para que cada tipo de usuario vea y edite exactamente lo que le corresponde.",
+        decisions: [
+          "Centré el front-end en componentes y formularios reutilizables para mantener consistencia entre tipos de registro.",
+          "Diseñé la visualización en mapa para que los patrones espaciales de los datos sean visibles de inmediato.",
+          "Planifiqué los estados de la interfaz por rol desde temprano, para que los permisos den forma a la interfaz y no solo a la API.",
+        ],
+        features: [
+          "Formularios estructurados para hallazgos arqueológicos",
+          "Visualización interactiva de registros en mapa",
+          "Acceso por roles con interfaces diferenciadas",
+          "Diseños responsivos para uso en campo y oficina",
+          "Integración con APIs del backend para registros y autenticación",
+        ],
+        results: [
+          "En curso — entrega al cliente planificada para noviembre de 2026.",
+        ],
+        stack: ["React", "Next.js", "Tailwind CSS", "TypeScript"],
+        links: {},
+      },
+    },
+  },
+  {
     slug: "walletalert",
     featured: true,
     title: "WalletAlert",
