@@ -431,6 +431,68 @@ const projectSeeds: ProjectSeed[] = [
     },
   },
   {
+    slug: "jbooks",
+    featured: true,
+    title: "JBooks",
+    icon: "fa-book",
+    description:
+      "Full-stack library management web application with public browsing, authenticated user access, and admin functionality. Built with Next.js, React, Supabase, and Tailwind CSS.",
+    technologies: ["Next.js", "React", "Supabase", "Tailwind CSS", "TypeScript"],
+    link: "https://jaredjomar.github.io/portafolio/en/projects/jbooks",
+    content: {
+      en: {
+        summary:
+          "Library management platform where visitors can browse the catalog publicly, members manage loans and holds, and admins control readers, metadata, and reports — all protected by Supabase authentication and Row Level Security.",
+        context:
+          "Small libraries need affordable tooling to manage collections, members, and circulation without enterprise software overhead.",
+        problem:
+          "Managing books, loans, holds, and reader accounts across spreadsheets or paper is error-prone and gives no clear separation between public visitors, members, and administrators.",
+        solution:
+          "JBooks delivers a full-stack Next.js app backed by Supabase: public catalog browsing, authenticated member workflows for loans and holds, and an admin area for reader management, metadata lookup, and CSV reporting.",
+        decisions: [
+          "Used Supabase Row Level Security so data protection is enforced at the database layer, not just in the UI.",
+          "Separated public, member, and admin experiences with authenticated routes and role checks.",
+          "Added CSV reporting so circulation data can leave the app for external analysis.",
+        ],
+        features: [
+          "Public book catalog browsing",
+          "Member loans and holds management",
+          "Reader account administration",
+          "Metadata lookup for cataloging",
+          "CSV reporting on circulation",
+          "Supabase authentication with Row Level Security",
+        ],
+        stack: ["Next.js", "React", "Supabase", "Tailwind CSS", "TypeScript"],
+        links: {},
+      },
+      es: {
+        summary:
+          "Plataforma de gestión bibliotecaria donde los visitantes exploran el catálogo públicamente, los miembros gestionan préstamos y reservas, y los administradores controlan lectores, metadatos y reportes — todo protegido con autenticación de Supabase y Row Level Security.",
+        context:
+          "Las bibliotecas pequeñas necesitan herramientas accesibles para gestionar colecciones, miembros y circulación sin el costo de software empresarial.",
+        problem:
+          "Gestionar libros, préstamos, reservas y cuentas de lectores en hojas de cálculo o papel genera errores y no separa claramente lo que ven visitantes, miembros y administradores.",
+        solution:
+          "JBooks es una app full-stack en Next.js con Supabase: catálogo público, flujos autenticados para préstamos y reservas, y un área administrativa para gestión de lectores, búsqueda de metadatos y reportes CSV.",
+        decisions: [
+          "Se usó Row Level Security de Supabase para que la protección de datos se aplique en la base de datos, no solo en la interfaz.",
+          "Se separaron las experiencias pública, de miembro y de administrador con rutas autenticadas y verificación de roles.",
+          "Se añadieron reportes CSV para poder analizar los datos de circulación fuera de la app.",
+        ],
+        features: [
+          "Exploración pública del catálogo",
+          "Gestión de préstamos y reservas para miembros",
+          "Administración de cuentas de lectores",
+          "Búsqueda de metadatos para catalogación",
+          "Reportes CSV de circulación",
+          "Autenticación Supabase con Row Level Security",
+        ],
+        stack: ["Next.js", "React", "Supabase", "Tailwind CSS", "TypeScript"],
+        links: {},
+      },
+    },
+  },
+  {
     slug: "walletalert",
     featured: true,
     title: "WalletAlert",
