@@ -439,6 +439,13 @@ const projectSeeds: ProjectSeed[] = [
       "Full-stack library management web application with public browsing, authenticated user access, and admin functionality. Built with Next.js, React, Supabase, and Tailwind CSS.",
     technologies: ["Next.js", "React", "Supabase", "Tailwind CSS", "TypeScript"],
     link: "https://jaredjomar.github.io/portafolio/en/projects/jbooks",
+        screenshots: [
+      {
+        src: "/jbooks-catalog.png",
+        alt: "JBooks catalog page showing the book grid with covers, search filters, and loan request buttons",
+        caption: "Catalog view with search filters and book cards",
+      },
+    ],
     content: {
       en: {
         summary:
