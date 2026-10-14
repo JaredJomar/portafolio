@@ -548,6 +548,7 @@ const projectSeeds: ProjectSeed[] = [
         stack: ["React", "Vite", "Node.js", "Express", "MongoDB", "Auth0", "Recharts", "Vitest"],
         links: {
           repo: "https://github.com/uprm-torre/software-engineering-project-walletalert",
+          live: "https://walletalert-web.onrender.com/",
         },
       },
       es: {
@@ -582,6 +583,7 @@ const projectSeeds: ProjectSeed[] = [
         stack: ["React", "Vite", "Node.js", "Express", "MongoDB", "Auth0", "Recharts", "Vitest"],
         links: {
           repo: "https://github.com/uprm-torre/software-engineering-project-walletalert",
+          live: "https://walletalert-web.onrender.com/",
         },
       },
     },
