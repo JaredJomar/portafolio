@@ -588,7 +588,96 @@ const projectSeeds: ProjectSeed[] = [
       },
     },
   },
-  {
+  {  {
+    slug: "ai-usage-tray",
+    featured: false,
+    title: "AI Usage Tray",
+    icon: "fa-gauge-high",
+    description:
+      "Windows system tray app that monitors OpenAI Codex usage with a color-coded tray icon, live dashboard, and reset credit tracking.",
+    technologies: ["Python", "PyQt6", "pystray", "OAuth PKCE"],
+    link: "https://github.com/JaredJomar/ai-usage-tray",
+    screenshots: [
+      {
+        src: "/ai-usage-tray-dashboard.png",
+        alt: "AI Usage Tray dashboard in dark mode showing usage windows and reset credits",
+        caption: "Usage dashboard with dark mode",
+      },
+    ],
+    content: {
+      en: {
+        summary:
+          "Windows system tray app for monitoring OpenAI Codex usage without keeping a browser tab open.",
+        context:
+          "When working with AI coding tools that have usage limits, it is easy to lose track of how much quota remains and when it resets. Checking means opening a dashboard in the browser, breaking focus.",
+        problem:
+          "Developers need a glanceable, always-available view of their AI usage limits and reset timing, without context-switching to a web dashboard.",
+        solution:
+          "AI Usage Tray lives in the Windows system tray with a color-coded icon (green under 60%, orange 60-84%, red 85%+), a tooltip with progress bars and reset countdowns, and a full dashboard with 5-hour and 7-day usage windows, reset credit tracking, and recent model activity.",
+        decisions: [
+          "Used browser-based OAuth with PKCE instead of device codes for a smoother, more secure sign-in flow.",
+          "Kept local activity collection read-only from Codex metadata files, using aggregate session and token data without reading prompts or message text.",
+          "Shipped as a standalone .exe via Inno Setup so no Python installation is required.",
+          "Enabled launch on startup by default via the Windows registry, with opt-out in tray and settings.",
+        ],
+        features: [
+          "Color-coded tray icon by usage level",
+          "Tooltip with compact progress bars and reset countdowns",
+          "Codex Usage dashboard with 5h and 7d windows",
+          "Reset credits counter with countdown timers",
+          "Recent model activity from the last 72 hours",
+          "Light and dark dashboard themes",
+          "Catppuccin Mocha themed settings window",
+          "Launch on startup with opt-out",
+        ],
+        results: [
+          "Turned usage-limit anxiety into a glanceable tray indicator that is always one hover away.",
+          "Combined OAuth PKCE auth, background polling, local metadata reading, and native Windows integration in one focused desktop app.",
+          "Delivered a real installable product with CI-built releases instead of a source-only script.",
+        ],
+        stack: ["Python", "PyQt6", "pystray", "Pillow", "requests", "Inno Setup"],
+        links: {
+          repo: "https://github.com/JaredJomar/ai-usage-tray",
+        },
+      },
+      es: {
+        summary:
+          "Aplicación de Windows en el system tray para monitorear el uso de OpenAI Codex sin mantener una pestaña abierta.",
+        context:
+          "Al trabajar con herramientas de IA que tienen límites de uso, es fácil perder la noción de cuánta cuota queda y cuándo se reinicia. Revisarlo implica abrir un panel en el navegador y romper el enfoque.",
+        problem:
+          "Los desarrolladores necesitan una vista rápida y siempre disponible de sus límites de uso de IA y tiempos de reinicio, sin cambiar de contexto a un panel web.",
+        solution:
+          "AI Usage Tray vive en el system tray de Windows con un icono codificado por color (verde bajo 60%, naranja 60-84%, rojo 85%+), un tooltip con barras de progreso y cuentas regresivas, y un panel completo con ventanas de uso de 5 horas y 7 días, seguimiento de créditos de reinicio y actividad reciente de modelos.",
+        decisions: [
+          "Se usó OAuth por navegador con PKCE en lugar de códigos de dispositivo para un inicio de sesión más fluido y seguro.",
+          "La recolección de actividad local es de solo lectura desde los metadatos de Codex, usando datos agregados de sesión y tokens sin leer prompts ni mensajes.",
+          "Se distribuye como un .exe independiente con Inno Setup, sin requerir instalación de Python.",
+          "Se habilitó el inicio con Windows por defecto vía el registro, con opción de desactivarlo.",
+        ],
+        features: [
+          "Icono del tray codificado por color según el nivel de uso",
+          "Tooltip con barras de progreso compactas y cuentas regresivas",
+          "Panel de uso de Codex con ventanas de 5h y 7d",
+          "Contador de créditos de reinicio con temporizadores",
+          "Actividad reciente de modelos de las últimas 72 horas",
+          "Temas claro y oscuro para el panel",
+          "Ventana de ajustes con tema Catppuccin Mocha",
+          "Inicio con Windows con opción de desactivar",
+        ],
+        results: [
+          "Convirtió la incertidumbre de los límites de uso en un indicador visible con solo pasar el cursor.",
+          "Combinó autenticación OAuth PKCE, sondeo en segundo plano, lectura de metadatos locales e integración nativa con Windows en una sola app de escritorio.",
+          "Entregó un producto instalable real con releases generados por CI en lugar de un script solo para código fuente.",
+        ],
+        stack: ["Python", "PyQt6", "pystray", "Pillow", "requests", "Inno Setup"],
+        links: {
+          repo: "https://github.com/JaredJomar/ai-usage-tray",
+        },
+      },
+    },
+  },
+
     slug: "vic",
     featured: true,
     title: "VIC - Virtual Institutional Counselor",
