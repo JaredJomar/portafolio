@@ -588,7 +588,7 @@ const projectSeeds: ProjectSeed[] = [
       },
     },
   },
-  {  {
+  {
     slug: "ai-usage-tray",
     featured: false,
     title: "AI Usage Tray",
@@ -678,6 +678,7 @@ const projectSeeds: ProjectSeed[] = [
     },
   },
 
+  {
     slug: "vic",
     featured: true,
     title: "VIC - Virtual Institutional Counselor",
